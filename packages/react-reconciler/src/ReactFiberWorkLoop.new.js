@@ -1556,7 +1556,7 @@ function performUnitOfWork(unitOfWork: Fiber): void {
 
   resetCurrentDebugFiberInDEV();
   unitOfWork.memoizedProps = unitOfWork.pendingProps;
-  // 此时next为 child， 如果child 为空 则会判断
+  // 此时next为 child， 如果child 为空 则会 将 workInProgress 赋值为 workInProgress.sibling
   if (next === null) {
     // If this doesn't spawn new work, complete the current work.
     completeUnitOfWork(unitOfWork);
@@ -2106,6 +2106,7 @@ function commitBeforeMutationEffects() {
   while (nextEffect !== null) {
     const current = nextEffect.alternate;
 
+    // onBlur onFocus 处理
     if (!shouldFireAfterActiveInstanceBlur && focusedInstanceHandle !== null) {
       if ((nextEffect.effectTag & Deletion) !== NoEffect) {
         if (doesFiberContain(nextEffect, focusedInstanceHandle)) {
@@ -2126,6 +2127,7 @@ function commitBeforeMutationEffects() {
     }
 
     const effectTag = nextEffect.effectTag;
+    // 判断调用 getSnapshotBeforeUpdate
     if ((effectTag & Snapshot) !== NoEffect) {
       setCurrentDebugFiberInDEV(nextEffect);
 
@@ -2133,6 +2135,7 @@ function commitBeforeMutationEffects() {
 
       resetCurrentDebugFiberInDEV();
     }
+    // 判断调用 useEffect
     if ((effectTag & Passive) !== NoEffect) {
       // If there are passive effects, schedule a callback to flush at
       // the earliest opportunity.
