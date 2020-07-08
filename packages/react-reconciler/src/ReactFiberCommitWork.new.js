@@ -1476,6 +1476,7 @@ function commitWork(current: Fiber | null, finishedWork: Fiber): void {
             recordLayoutEffectDuration(finishedWork);
           }
         } else {
+          // 执行 useLayoutEffect Hook 的销毁函数
           commitHookEffectListUnmount(HookLayout | HookHasEffect, finishedWork);
         }
         return;

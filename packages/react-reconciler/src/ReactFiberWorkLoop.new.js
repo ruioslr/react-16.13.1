@@ -1897,6 +1897,14 @@ function commitRootImpl(root, renderPriorityLevel) {
         }
       } else {
         try {
+
+          /*
+            处理DOM节点渲染/删除后的 autoFocus、blur逻辑
+
+            调用getSnapshotBeforeUpdate生命周期钩子
+
+            调度useEffect
+           */
           commitBeforeMutationEffects();
         } catch (error) {
           invariant(nextEffect !== null, 'Should be working on an effect.');
@@ -1934,6 +1942,11 @@ function commitRootImpl(root, renderPriorityLevel) {
         }
       } else {
         try {
+          /*
+            递归调用Fiber节点及其子孙Fiber节点的componentWillUnmount生命周期钩子，从页面移除Fiber节点对应DOM节点
+            解绑ref
+            调度useEffect的销毁函数
+          */
           commitMutationEffects(root, renderPriorityLevel);
         } catch (error) {
           invariant(nextEffect !== null, 'Should be working on an effect.');
@@ -1952,6 +1965,7 @@ function commitRootImpl(root, renderPriorityLevel) {
     // the mutation phase, so that the previous tree is still current during
     // componentWillUnmount, but before the layout phase, so that the finished
     // work is current during componentDidMount/Update.
+    // 切换 workInProgress 和 current
     root.current = finishedWork;
 
     // The next phase is the layout phase, where we call effects that read
@@ -1969,6 +1983,9 @@ function commitRootImpl(root, renderPriorityLevel) {
         }
       } else {
         try {
+          /*
+            调用componentDidUpdate 或 componentDidMount和 hook, 调用this.setState 的 第二个参数
+          */
           commitLayoutEffects(root, lanes);
         } catch (error) {
           invariant(nextEffect !== null, 'Should be working on an effect.');
@@ -2127,7 +2144,7 @@ function commitBeforeMutationEffects() {
     }
 
     const effectTag = nextEffect.effectTag;
-    // 判断调用 getSnapshotBeforeUpdate
+    // 调用 getSnapshotBeforeUpdate
     if ((effectTag & Snapshot) !== NoEffect) {
       setCurrentDebugFiberInDEV(nextEffect);
 
@@ -2135,7 +2152,7 @@ function commitBeforeMutationEffects() {
 
       resetCurrentDebugFiberInDEV();
     }
-    // 判断调用 useEffect
+    // *调度* useEffect
     if ((effectTag & Passive) !== NoEffect) {
       // If there are passive effects, schedule a callback to flush at
       // the earliest opportunity.
@@ -2158,10 +2175,12 @@ function commitMutationEffects(root: FiberRoot, renderPriorityLevel) {
 
     const effectTag = nextEffect.effectTag;
 
+    // 文字节点
     if (effectTag & ContentReset) {
       commitResetTextContent(nextEffect);
     }
 
+    // 更新ref
     if (effectTag & Ref) {
       const current = nextEffect.alternate;
       if (current !== null) {
@@ -2215,6 +2234,11 @@ function commitMutationEffects(root: FiberRoot, renderPriorityLevel) {
         break;
       }
       case Deletion: {
+        /*
+          递归调用Fiber节点及其子孙Fiber节点的componentWillUnmount生命周期钩子，从页面移除Fiber节点对应DOM节点
+          解绑ref
+          *调度* useEffect的销毁函数
+        */
         commitDeletion(root, nextEffect, renderPriorityLevel);
         break;
       }
@@ -2231,12 +2255,12 @@ function commitLayoutEffects(root: FiberRoot, committedLanes: Lanes) {
     setCurrentDebugFiberInDEV(nextEffect);
 
     const effectTag = nextEffect.effectTag;
-
+    // 调用componentDidUpdate 或 componentDidMount和 hook, 调用this.setState 的 第二个参数
     if (effectTag & (Update | Callback)) {
       const current = nextEffect.alternate;
       commitLayoutEffectOnFiber(root, current, nextEffect, committedLanes);
     }
-
+    // 赋值ref
     if (effectTag & Ref) {
       commitAttachRef(nextEffect);
     }
