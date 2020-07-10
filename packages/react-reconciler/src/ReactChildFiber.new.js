@@ -829,7 +829,7 @@ function ChildReconciler(shouldTrackSideEffects) {
           oldFiber = nextOldFiber;
         }
         break;
-      }
+      }markUpdateLaneFromFiberToRoot
       if (shouldTrackSideEffects) {
         if (oldFiber && newFiber.alternate === null) {
           // We matched the slot, but we didn't reuse the existing fiber, so we

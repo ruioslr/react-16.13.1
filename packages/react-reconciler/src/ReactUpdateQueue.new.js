@@ -126,7 +126,7 @@ type SharedQueue<State> = {|
 |};
 
 export type UpdateQueue<State> = {|
-  baseState: State,
+  baseState: State,  // 更新前的state
   firstBaseUpdate: Update<State> | null,
   lastBaseUpdate: Update<State> | null,
   shared: SharedQueue<State>,
