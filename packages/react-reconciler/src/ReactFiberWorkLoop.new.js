@@ -1867,6 +1867,9 @@ function commitRootImpl(root, renderPriorityLevel) {
     firstEffect = finishedWork.firstEffect;
   }
 
+  // ------ before mutation之前 ----
+
+  // before mutation , mutation , layout
   if (firstEffect !== null) {
     const prevExecutionContext = executionContext;
     executionContext |= CommitContext;
@@ -1942,11 +1945,6 @@ function commitRootImpl(root, renderPriorityLevel) {
         }
       } else {
         try {
-          /*
-            递归调用Fiber节点及其子孙Fiber节点的componentWillUnmount生命周期钩子，从页面移除Fiber节点对应DOM节点
-            解绑ref
-            调度useEffect的销毁函数
-          */
           commitMutationEffects(root, renderPriorityLevel);
         } catch (error) {
           invariant(nextEffect !== null, 'Should be working on an effect.');
@@ -2016,6 +2014,8 @@ function commitRootImpl(root, renderPriorityLevel) {
     }
   }
 
+
+  // ------- layout 之后 --------
   const rootDidHavePassiveEffects = rootDoesHavePassiveEffects;
 
   if (rootDoesHavePassiveEffects) {
