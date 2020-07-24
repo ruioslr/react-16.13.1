@@ -1227,6 +1227,8 @@ function insertOrAppendPlacementNodeIntoContainer(
   const isHost = tag === HostComponent || tag === HostText;
   if (isHost || (enableFundamentalAPI && tag === FundamentalComponent)) {
     const stateNode = isHost ? node.stateNode : node.stateNode.instance;
+
+    // 这里 真真的执行dom操作
     if (before) {
       insertInContainerBefore(parent, stateNode, before);
     } else {
