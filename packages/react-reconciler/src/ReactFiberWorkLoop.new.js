@@ -1927,6 +1927,7 @@ function commitRootImpl(root, renderPriorityLevel) {
     }
 
     // The next phase is the mutation phase, where we mutate the host tree.
+    // 下一个阶段是突变阶段，在此阶段我们对宿主树进行挂载
     nextEffect = firstEffect;
     do {
       if (__DEV__) {
@@ -1983,7 +1984,8 @@ function commitRootImpl(root, renderPriorityLevel) {
       } else {
         try {
           /*
-            调用componentDidUpdate 或 componentDidMount和 hook, 调用this.setState 的 第二个参数
+            调用componentDidUpdate 或 componentDidMount 和 hook, 调用this.setState 的 第二个参数
+            useEffect 真正会在这里被调度
           */
           commitLayoutEffects(root, lanes);
         } catch (error) {
@@ -2460,6 +2462,7 @@ function flushPassiveEffectsImpl() {
         ) {
           try {
             startPassiveEffectTimer();
+            // 调用 hooks 的代码
             effect.destroy = create();
           } finally {
             recordPassiveEffectDuration(fiber);
