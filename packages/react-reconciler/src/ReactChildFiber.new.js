@@ -1205,6 +1205,7 @@ function ChildReconciler(shouldTrackSideEffects) {
           }
         }
         // Didn't match.
+        // 这里指的是： 如果 key相同， 但是elementType不同， 则删掉全部的 child, 因为 key 是唯一的， 相同的那个key却类型不同，那么就找不到，key相同的了
         deleteRemainingChildren(returnFiber, child);
         break;
       } else {
