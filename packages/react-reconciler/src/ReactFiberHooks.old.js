@@ -1149,7 +1149,7 @@ function mountState<S>(
     lastRenderedState: (initialState: any),
   });
   const dispatch: Dispatch<
-    BasicStateAction<S>,
+    BasicStateAction<S>
   > = (queue.dispatch = (dispatchAction.bind(
     null,
     currentlyRenderingFiber,
@@ -1672,6 +1672,7 @@ function dispatchAction<S, A>(
     next: (null: any),
   };
 
+  // 这里 把 新的update 放入环状链表， 并使 queue.pending = 新的update
   // Append the update to the end of the list.
   const pending = queue.pending;
   if (pending === null) {

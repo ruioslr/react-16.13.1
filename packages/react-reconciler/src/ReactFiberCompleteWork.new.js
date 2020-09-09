@@ -161,6 +161,7 @@ let updateHostText;
 if (supportsMutation) {
   // Mutation mode
 
+  // 将子孙DOM节点全部插入刚生成的DOM节点中
   appendAllChildren = function(
     parent: Instance,
     workInProgress: Fiber,
