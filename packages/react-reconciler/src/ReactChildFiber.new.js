@@ -441,7 +441,7 @@ function ChildReconciler(shouldTrackSideEffects) {
         }
       }
     }
-    // Insert
+    // Insert 此时 key相同，但是type不相同，所以此时created.alternate === null
     const created = createFiberFromElement(element, returnFiber.mode, lanes);
     created.ref = coerceRef(returnFiber, current, element);
     created.return = returnFiber;
@@ -832,6 +832,7 @@ function ChildReconciler(shouldTrackSideEffects) {
       }
       if (shouldTrackSideEffects) {
         if (oldFiber && newFiber.alternate === null) {
+          // 这里是没有复用 key 相同但是type不同，所以没有复用
           // We matched the slot, but we didn't reuse the existing fiber, so we
           // need to delete the existing child.
           deleteChild(returnFiber, oldFiber);
