@@ -445,6 +445,9 @@ export function processUpdateQueue<State>(
     // queue is a singly-linked list with no cycles, we can append to both
     // lists and take advantage of structural sharing.
     // TODO: Pass `current` as argument
+
+    // 这里会把shared.pending也同时追加在current.updateQueue.baseUpdate后面
+    // 主要作用是，高优先级任务在commit渲染完成后 workInProgress Tree => current Tree, 下次再根据 current Tree 生成 WrokInProgress 。。。 ？
     const current = workInProgress.alternate;
     if (current !== null) {
       // This is always non-null on a ClassComponent or HostRoot
