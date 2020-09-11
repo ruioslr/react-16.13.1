@@ -122,7 +122,7 @@ export type Update<State> = {|
 |};
 
 type SharedQueue<State> = {|
-  pending: Update<State> | null,
+  pending: Update<State> | null, // 指向的是单向环状链表的尾结点， 这样 pending.next 就是头结点
 |};
 
 export type UpdateQueue<State> = {|
@@ -431,6 +431,7 @@ export function processUpdateQueue<State>(
     const firstPendingUpdate = lastPendingUpdate.next;
     lastPendingUpdate.next = null;
     // Append pending updates to base queue
+    // 这里是说 baseUpdate 这个单向链表是空的，即 这个fiber 不存在没有更新完的 update
     if (lastBaseUpdate === null) {
       firstBaseUpdate = firstPendingUpdate;
     } else {
@@ -476,6 +477,7 @@ export function processUpdateQueue<State>(
       const updateLane = update.lane;
       const updateEventTime = update.eventTime;
       if (!isSubsetOfLanes(renderLanes, updateLane)) {
+        // 跳过这个更新
         // Priority is insufficient. Skip this update. If this is the first
         // skipped update, the previous update/state is the new base
         // update/state.
@@ -490,6 +492,7 @@ export function processUpdateQueue<State>(
 
           next: null,
         };
+        // 这里就是 形成一个 newFirstBaseUpdate -> ... -> newLastBaseUpdate 的单向链表
         if (newLastBaseUpdate === null) {
           newFirstBaseUpdate = newLastBaseUpdate = clone;
           newBaseState = newState;

@@ -351,6 +351,7 @@ function ChildReconciler(shouldTrackSideEffects) {
       return lastPlacedIndex;
     }
     const current = newFiber.alternate;
+    // 复用了
     if (current !== null) {
       const oldIndex = current.index;
       if (oldIndex < lastPlacedIndex) {
@@ -853,12 +854,14 @@ function ChildReconciler(shouldTrackSideEffects) {
       oldFiber = nextOldFiber;
     }
 
+    // new Children 已经遍历完的情况
     if (newIdx === newChildren.length) {
       // We've reached the end of the new children. We can delete the rest.
       deleteRemainingChildren(returnFiber, oldFiber);
       return resultingFirstChild;
     }
 
+    // oldFiber  已经遍历完的情况
     if (oldFiber === null) {
       // If we don't have any more existing children we can choose a fast path
       // since the rest will all be insertions.
@@ -879,6 +882,8 @@ function ChildReconciler(shouldTrackSideEffects) {
       return resultingFirstChild;
     }
 
+
+    // 到这里说明，new children 和 oldFiber 都没遍历完，即：碰到了 oldFiber.key !== newChild.key的情况
     // Add all children to a key map for quick lookups.
     const existingChildren = mapRemainingChildren(returnFiber, oldFiber);
 
@@ -893,6 +898,7 @@ function ChildReconciler(shouldTrackSideEffects) {
       );
       if (newFiber !== null) {
         if (shouldTrackSideEffects) {
+          // 复用了，所以会有 alternate， 下面英文的注释也可以看
           if (newFiber.alternate !== null) {
             // The new fiber is a work in progress, but if there exists a
             // current, that means that we reused the fiber. We need to delete
