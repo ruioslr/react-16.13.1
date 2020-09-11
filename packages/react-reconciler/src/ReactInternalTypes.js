@@ -105,6 +105,7 @@ export type Fiber = {|
 
   // Input is the data coming into process this fiber. Arguments. Props.
   pendingProps: any, // This type will be more specific once we overload the tag.
+  // 用来存放 *本次更新* 产生 的最终的State
   memoizedProps: any, // The props used to create the output.
 
   // A queue of state updates and callbacks.

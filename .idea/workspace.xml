@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="52dcf07d-0e5b-46bc-90f9-b2a9063df08d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/react-reconciler/src/ReactChildFiber.new.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/react-reconciler/src/ReactChildFiber.new.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/react-reconciler/src/ReactInternalTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/react-reconciler/src/ReactInternalTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/react-reconciler/src/ReactUpdateQueue.new.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/react-reconciler/src/ReactUpdateQueue.new.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +94,7 @@
       <workItem from="1598853751459" duration="612000" />
       <workItem from="1599464736345" duration="2533000" />
       <workItem from="1599630801902" duration="26459000" />
-      <workItem from="1599723483376" duration="9800000" />
+      <workItem from="1599723483376" duration="15756000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1594117160676</created>
@@ -264,10 +264,10 @@
     </state>
     <state x="1957" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1595311877001" />
     <state x="508" y="369" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1594201387822" />
-    <state x="2267" y="232" width="695" height="522" key="find.popup" timestamp="1599813609011">
+    <state x="2267" y="232" width="695" height="522" key="find.popup" timestamp="1599821760761">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state x="2267" y="232" width="695" height="522" key="find.popup/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1599813609011" />
+    <state x="2267" y="232" width="695" height="522" key="find.popup/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1599821760761" />
     <state x="616" y="101" width="695" height="522" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1597300838025" />
     <state x="1896" y="281" width="695" height="522" key="find.popup/0.23.1280.777/1280.0.1920.1080@1280.0.1920.1080" timestamp="1597203297221" />
     <state x="2115" y="415" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup" timestamp="1594016670167">

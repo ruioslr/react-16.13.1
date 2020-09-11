@@ -126,7 +126,7 @@ type SharedQueue<State> = {|
 |};
 
 export type UpdateQueue<State> = {|
-  baseState: State,  // 更新前的state
+  baseState: State,  // 在跳过某一个更新前时的 State
   firstBaseUpdate: Update<State> | null,
   lastBaseUpdate: Update<State> | null,
   shared: SharedQueue<State>,
@@ -214,6 +214,7 @@ export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
 
   const sharedQueue: SharedQueue<State> = (updateQueue: any).shared;
   const pending = sharedQueue.pending;
+  // 形成环状链表，pending指向链表尾部（也就是新加入的update），这样pending.next 就是链表头部
   if (pending === null) {
     // This is the first update. Create a circular list.
     update.next = update;
@@ -502,8 +503,10 @@ export function processUpdateQueue<State>(
         // Update the remaining priority in the queue.
         newLanes = mergeLanes(newLanes, updateLane);
       } else {
+        // 这里不用跳过
         // This update does have sufficient priority.
 
+        // 把这次更新追加在那个 newLastBaseUpdate链上
         if (newLastBaseUpdate !== null) {
           const clone: Update<State> = {
             eventTime: updateEventTime,
@@ -530,6 +533,7 @@ export function processUpdateQueue<State>(
         // update here.
         markRenderEventTimeAndConfig(updateEventTime, update.suspenseConfig);
 
+        // 真正开始执行更新
         // Process this update.
         newState = getStateFromUpdate(
           workInProgress,
@@ -540,6 +544,7 @@ export function processUpdateQueue<State>(
           instance,
         );
         const callback = update.callback;
+        // 把有callback的update放入updateQueue的effects队列中，并把这个fiber加上 'Callback'的 EffectTag
         if (callback !== null) {
           workInProgress.effectTag |= Callback;
           const effects = queue.effects;
@@ -551,11 +556,13 @@ export function processUpdateQueue<State>(
         }
       }
       update = update.next;
+      // 更新都执行完了
       if (update === null) {
         pendingQueue = queue.shared.pending;
         if (pendingQueue === null) {
           break;
         } else {
+          // 如果此时 pendingQueue 又有了更新， 则继续执行产生的更新
           // An update was scheduled from inside a reducer. Add the new
           // pending updates to the end of the list and keep processing.
           const lastPendingUpdate = pendingQueue;
@@ -570,6 +577,7 @@ export function processUpdateQueue<State>(
       }
     } while (true);
 
+    // 没有需要跳过的更新 || 要跳过的更新已经全部走完了
     if (newLastBaseUpdate === null) {
       newBaseState = newState;
     }
