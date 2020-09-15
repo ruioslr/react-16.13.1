@@ -401,6 +401,7 @@ export function renderWithHooks<Props, SecondArg>(
         : HooksDispatcherOnUpdate;
   }
 
+  // 这里调用函数组件方法体，同时会触发useState 和 useReducer在update阶段的对应声明方法（updateReducer）
   let children = Component(props, secondArg);
 
   // Check if there was a render phase update

@@ -2274,6 +2274,7 @@ function commitLayoutEffects(root: FiberRoot, committedLanes: Lanes) {
   }
 }
 
+// 调用useEffect里的Effect
 export function flushPassiveEffects() {
   if (pendingPassiveEffectsRenderPriority !== NoSchedulerPriority) {
     const priorityLevel =

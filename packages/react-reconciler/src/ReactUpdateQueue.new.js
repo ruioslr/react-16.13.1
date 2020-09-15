@@ -446,7 +446,7 @@ export function processUpdateQueue<State>(
     // lists and take advantage of structural sharing.
     // TODO: Pass `current` as argument
 
-    // 这里会把shared.pending也同时追加在current.updateQueue.baseUpdate后面
+    // 这里会把shared.pending也同时追加在current.updateQueue.baseUpdate后面， 以保证这次更新被中断后，更新不会丢失（workInProgress.updateQueue 是由 current.updateQueue产生）
     const current = workInProgress.alternate;
     if (current !== null) {
       // This is always non-null on a ClassComponent or HostRoot
