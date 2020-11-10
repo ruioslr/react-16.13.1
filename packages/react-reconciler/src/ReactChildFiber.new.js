@@ -1342,6 +1342,7 @@ function ChildReconciler(shouldTrackSideEffects) {
     }
 
     if (typeof newChild === 'string' || typeof newChild === 'number') {
+      // 这里好像永远也进不来，因为文本节点的处理作为一个update payload {children: xxx}, 在commitUpdate -> updateProperties下被处理
       return placeSingleChild(
         reconcileSingleTextNode(
           returnFiber,

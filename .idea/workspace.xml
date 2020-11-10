@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52dcf07d-0e5b-46bc-90f9-b2a9063df08d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/react-dom/src/client/ReactDOMRoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/react-dom/src/client/ReactDOMRoot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/react-dom/src/client/ReactDOMComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/react-dom/src/client/ReactDOMComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/react-reconciler/src/ReactChildFiber.new.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/react-reconciler/src/ReactChildFiber.new.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/react-reconciler/src/ReactFiber.new.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/react-reconciler/src/ReactFiber.new.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/react-reconciler/src/ReactFiberBeginWork.new.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/react-reconciler/src/ReactFiberBeginWork.new.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +98,7 @@
       <workItem from="1600069069173" duration="11374000" />
       <workItem from="1600998434850" duration="6935000" />
       <workItem from="1602213697537" duration="77000" />
-      <workItem from="1604903244006" duration="10562000" />
+      <workItem from="1604903244006" duration="12544000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1594117160676</created>
@@ -166,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600141211594</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update">
+      <created>1604989583351</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1604989583351</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,10 +198,10 @@
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state x="2123" y="383" key="#Notifications/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1599709725442" />
-    <state x="1786" y="52" key="CommitChangelistDialog2" timestamp="1600141211354">
+    <state x="1786" y="52" key="CommitChangelistDialog2" timestamp="1604989583069">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state x="1786" y="52" key="CommitChangelistDialog2/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1600141211354" />
+    <state x="1786" y="52" key="CommitChangelistDialog2/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1604989583069" />
     <state width="1878" height="370" key="GridCell.Tab.0.bottom" timestamp="1599560844888">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
@@ -255,15 +259,15 @@
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state x="1815" y="149" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1280.777/1280.0.1920.1080@1280.0.1920.1080" timestamp="1597202782031" />
-    <state x="1708" y="78" width="695" height="770" key="find.popup" timestamp="1604989116062">
+    <state x="1708" y="78" width="695" height="770" key="find.popup" timestamp="1604995826551">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state x="1708" y="78" width="695" height="770" key="find.popup/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1604989116062" />
+    <state x="1708" y="78" width="695" height="770" key="find.popup/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1604995826551" />
     <state x="616" y="101" width="695" height="522" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1600064546477" />
     <state x="1896" y="281" width="695" height="522" key="find.popup/0.23.1280.777/1280.0.1920.1080@1280.0.1920.1080" timestamp="1597203297221" />
-    <state x="1905" y="202" width="670" height="676" key="search.everywhere.popup" timestamp="1604918677249">
+    <state x="1905" y="202" width="670" height="676" key="search.everywhere.popup" timestamp="1604995225927">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state x="1905" y="202" width="670" height="676" key="search.everywhere.popup/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1604918677249" />
+    <state x="1905" y="202" width="670" height="676" key="search.everywhere.popup/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1604995225927" />
   </component>
 </project>

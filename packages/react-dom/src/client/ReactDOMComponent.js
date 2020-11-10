@@ -383,6 +383,7 @@ function updateDOMProperties(
       setValueForStyles(domElement, propValue);
     } else if (propKey === DANGEROUSLY_SET_INNER_HTML) {
       setInnerHTML(domElement, propValue);
+      // 文本节点的改变是在这里设置
     } else if (propKey === CHILDREN) {
       setTextContent(domElement, propValue);
     } else {
