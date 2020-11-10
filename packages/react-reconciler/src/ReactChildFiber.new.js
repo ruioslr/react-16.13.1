@@ -410,6 +410,7 @@ function ChildReconciler(shouldTrackSideEffects) {
         (__DEV__ ? isCompatibleFamilyForHotReloading(current, element) : false)
       ) {
         // Move based on index
+        // 当节点类型前后一样时，根据之前的fiber创建**新的fiber**
         const existing = useFiber(current, element.props);
         existing.ref = coerceRef(returnFiber, current, element);
         existing.return = returnFiber;
@@ -569,6 +570,8 @@ function ChildReconciler(shouldTrackSideEffects) {
     return null;
   }
 
+  // 这个方法用来生成新的fiber，如果key相同，且类型相同，即current.elementType === element.type
+  // 则
   function updateSlot(
     returnFiber: Fiber,
     oldFiber: Fiber | null,

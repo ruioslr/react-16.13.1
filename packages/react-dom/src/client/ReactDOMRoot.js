@@ -75,7 +75,7 @@ ReactDOMRoot.prototype.render = ReactDOMBlockingRoot.prototype.render = function
   const root = this._internalRoot;
   if (__DEV__) {
     if (typeof arguments[1] === 'function') {
-      console.error(performSyncWorkOnRoot
+      console.error(
         'render(...): does not support the second callback argument. ' +
           'To execute a side effect after rendering, declare it in a component body with useEffect().',
       );
