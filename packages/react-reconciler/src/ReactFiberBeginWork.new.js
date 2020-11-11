@@ -3081,6 +3081,9 @@ function beginWork(
     }
   }
 
+  // 这里的current 是 workInProgress.alternate, 如果没有current,说明这个节点在其父节点reconciler Child 时，
+  // 这个节点的workInProgress是新创建的，而不是根据其上次渲染的节点创建的（即，没有复用它上次渲染完成的一些属性，包括child）
+  // 导致这个的原因一般是，type发生变化  child.elementType !== element.type
   if (current !== null) {
     const oldProps = current.memoizedProps;
     const newProps = workInProgress.pendingProps;
