@@ -1454,6 +1454,7 @@ function mountIndeterminateComponent(
     }
   }
 
+  // 这里判断出到底是class还是functional, 并使用对应的逻辑调和子组件
   if (
     // Run these checks in production only if the flag is off.
     // Eventually we'll delete this branch altogether.
@@ -3299,6 +3300,7 @@ function beginWork(
   workInProgress.lanes = NoLanes;
 
   switch (workInProgress.tag) {
+    // 这里是不知道它是函数组件还是类组件 () =>  {render: () => xxx, componentDidMount: () => xxx}, 说明肯定这个workInProgresss是新的fiber
     case IndeterminateComponent: {
       return mountIndeterminateComponent(
         current,

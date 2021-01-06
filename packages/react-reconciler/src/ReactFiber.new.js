@@ -262,6 +262,7 @@ export function createWorkInProgress(current: Fiber, pendingProps: any): Fiber {
     // node that we're free to reuse. This is lazily created to avoid allocating
     // extra objects for things that are never updated. It also allow us to
     // reclaim the extra memory if needed.
+    // 这里会使用pendingProps
     workInProgress = createFiber(
       current.tag,
       pendingProps,
@@ -270,6 +271,7 @@ export function createWorkInProgress(current: Fiber, pendingProps: any): Fiber {
     );
     workInProgress.elementType = current.elementType;
     workInProgress.type = current.type;
+    // 这里连stateNode都复用了
     workInProgress.stateNode = current.stateNode;
 
     if (__DEV__) {
@@ -283,6 +285,7 @@ export function createWorkInProgress(current: Fiber, pendingProps: any): Fiber {
     workInProgress.alternate = current;
     current.alternate = workInProgress;
   } else {
+    // 能进入这个else分支，代表stateNode也是有的，所以不需要在赋值
     workInProgress.pendingProps = pendingProps;
     // Needed because Blocks store data on type.
     workInProgress.type = current.type;
